@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class BookController extends Controller
 {
@@ -12,6 +13,10 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() {
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
     public function index()
     {
         //
